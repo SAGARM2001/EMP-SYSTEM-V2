@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Management</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0-beta3/css/all.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Employee Management</h1>
+    <button class="btn btn-primary add-button" (click)="addRow()">Add</button>
+    <form [formGroup]="employeeForm">
+      <div class="table">
+        <table class="table table-bordered">
+          <!---------------------TABLE HEAD WITH COLUMN NAMES--------------------------->
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Contact</th>
+              <th>Email</th>
+              <th>DOB</th>
+              <th>Address</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <!---------------------TABLE BODY WITH INPUT FIELDS--------------------------->
+          <tbody>
+            <!-- Display existing employee data -->
+            <tr *ngFor="let employee of employees; let i = index">
+              <td *ngIf="!employee.isEditing">{{ employee.fname }}</td>
+              <td *ngIf="!employee.isEditing">{{ employee.lname }}</td>
+              <td *ngIf="!employee.isEditing">{{ employee.contact }}</td>
+              <td *ngIf="!employee.isEditing">{{ employee.email }}</td>
+              <td *ngIf="!employee.isEditing">{{ employee.dob }}</td>
+              <td *ngIf="!employee.isEditing">{{ employee.address }}</td>
+              <td>
+                <button class="btn btn-info"><i class="fas fa-edit"></i></button>
+                &nbsp;
+                <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+              </td>
+            </tr>
+
+            <!-- Add a row for new employee -->
+            <tr *ngIf="addingNewEmployee">
+
+              <!-- FIRST NAME -->
+              <td>
+                <input type="text" placeholder="Enter First Name" formControlName="firstName">
+                <div class="error-message"
+                  *ngIf="employeeForm.get('firstName')?.hasError('required') && employeeForm.get('firstName')?.touched">
+                  First Name is required.
+                </div>
+                <div class="error-message" *ngIf="employeeForm.get('firstName')?.hasError('pattern')">
+                  First Name must start with an uppercase letter and contain only alphabets.
+                </div>
+                <div class="error-message" *ngIf="employeeForm.get('firstName')?.hasError('minlength')">
+                  First Name must be at least 3 characters long.
+                </div>
+              </td>
+
+              <!-- LAST NAME -->
+              <td>
+                <input type="text" placeholder="Enter Last Name" formControlName="lastName">
+                <div class="error-message"
+                  *ngIf="employeeForm.get('lastName')?.hasError('required') && employeeForm.get('lastName')?.touched">
+                  Last Name is required.
+                </div>
+                <div class="error-message" *ngIf="employeeForm.get('lastName')?.hasError('pattern')">
+                  Last Name must start with an uppercase letter and contain only alphabets.
+                </div>
+                <div class="error-message" *ngIf="employeeForm.get('lastName')?.hasError('minlength')">
+                  Last Name must be at least 5 characters long.
+                </div>
+              </td>
+
+              <!-- CONTACT -->
+              <td>
+                <input type="text" placeholder="Enter Contact" formControlName="contact">
+                <div class="error-message"
+                  *ngIf="employeeForm.get('contact')?.hasError('required') && employeeForm.get('contact')?.touched">
+                  Contact is required.
+                </div>
+                <div class="error-message" *ngIf="employeeForm.get('contact')?.hasError('pattern')">
+                  Contact must be a 10-digit number.
+                </div>
+              </td>
+
+              <!-- EMAIL -->
+              <td>
+                <input type="text" placeholder="Enter Email" formControlName="email">
+                <div class="error-message"
+                  *ngIf="employeeForm.get('email')?.hasError('required') && employeeForm.get('email')?.touched">
+                  Email is required.
+                </div>
+                <div class="error-message" *ngIf="employeeForm.get('email')?.hasError('email')">
+                  Please enter a valid email address.
+                </div>
+              </td>
+
+              <!-- DATE OF BIRTH -->
+              <td>
+                <input type="text" placeholder="Enter DOB" formControlName="dob">
+                <div class="error-message"
+                  *ngIf="employeeForm.get('dob')?.hasError('required') && employeeForm.get('dob')?.touched">
+                  Date of Birth is required.
+                </div>
+              </td>
+
+              <!-- ADDRESS -->
+              <td>
+                <input type="text" placeholder="Enter Address" formControlName="address">
+                <div class="error-message"
+                  *ngIf="employeeForm.get('address')?.hasError('required') && employeeForm.get('address')?.touched">
+                  Address is required.
+                </div>
+              </td>
+
+              <!-- BUTTONS -->
+              <td>
+                <button class="btn btn-success" [disabled]="!employeeForm.valid" (click)="addNewEmployee()"><i
+                    class="fas fa-check"></i></button>
+                &nbsp;
+                <button class="btn btn-danger" (click)="cancelAddEmployee()"><i class="fas fa-times"></i></button>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </form>
+  </div>
+
+
+
+</body>
+
+</html>

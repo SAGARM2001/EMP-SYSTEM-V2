@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center align-items-center">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="mb-0">Login</h2>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="username"
+                                        placeholder="Enter your username" formControlName="userName" required>
+                                    <i class="fas fa-user form-control-icon"></i>
+                                </div>
+                                <div *ngIf="loginForm.get('userName')?.hasError('required') && loginForm.get('userName')?.touched"
+                                    class="text-danger">
+                                    Username is required.
+                                </div>
+                                <div *ngIf="loginForm.get('userName')?.hasError('minlength') && loginForm.get('userName')?.touched"
+                                    class="text-danger">
+                                    Username must be at least 4 characters long.
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password"
+                                        placeholder="Enter your password" formControlName="password" required>
+                                    <i class="fas fa-lock form-control-icon"></i>
+                                </div>
+                                <div *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched"
+                                    class="text-danger">
+                                    Password is required.
+                                </div>
+                                <div *ngIf="loginForm.get('password')?.hasError('minlength') && loginForm.get('password')?.touched"
+                                    class="text-danger">
+                                    Password must be at least 6 characters long.
+                                </div>
+                            </div>
+                            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-login btn-block">Login</button>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

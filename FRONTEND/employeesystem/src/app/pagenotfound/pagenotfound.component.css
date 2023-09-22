@@ -1,0 +1,19 @@
+        /* Custom CSS for Error 404 Page */
+        .container {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        h2 {
+            font-size: 48px;
+            color: #dc3545;
+            /* Red color for the error message */
+        }
+
+        h3 {
+            font-size: 36px;
+        }
+
+        .back-button {
+            margin-top: 20px;
+        }
