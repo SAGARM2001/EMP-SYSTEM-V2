@@ -8,6 +8,9 @@ import { AuthService } from './guard/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   constructor(
     private router: Router,
     private authService: AuthService
