@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
+// Declare jQuery to avoid TypeScript errors
+declare var $: any;
 
 @Component({
   selector: 'app-employee',
@@ -12,7 +14,7 @@ export class EmployeeComponent implements OnInit {
   employees: any[] = [];
   employeeForm: FormGroup;
   addingNewEmployee: boolean = false;
-
+  fullAddress: string = ''; // Property to store the full address
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {
     // VALIDATIONS
@@ -28,6 +30,19 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
+  }
+
+  // Function to check if ellipsis is present in the address
+  isEllipsis(address: string): boolean {
+    // Set a threshold for when ellipsis should appear
+    const threshold = 20; // You can adjust this value
+    return address.length > threshold;
+  }
+
+  // Function to open the modal with the full address
+  openAddressModal(address: string) {
+    this.fullAddress = address;
+    $('#addressModal').modal('show'); // Show the modal using jQuery
   }
 
   // ADDING ROWS IN TABLE
@@ -121,6 +136,4 @@ export class EmployeeComponent implements OnInit {
       }
     );
   }
-
-
 }

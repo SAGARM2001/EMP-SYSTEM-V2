@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 import { EmployeeComponent } from './employee.component';
 import { EmployeeRoutingModule } from './empform-routing.module';
  
@@ -13,7 +12,7 @@ import { EmployeeRoutingModule } from './empform-routing.module';
         CommonModule, 
         EmployeeRoutingModule,
         ReactiveFormsModule,
-        FormsModule,
+        FormsModule,    
     ], providers: [],
     bootstrap: [EmployeeComponent]
 })
