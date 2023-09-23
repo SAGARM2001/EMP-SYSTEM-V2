@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
-// Declare jQuery to avoid TypeScript errors
-declare var $: any;
 
 @Component({
   selector: 'app-employee',
@@ -39,11 +37,6 @@ export class EmployeeComponent implements OnInit {
     return address.length > threshold;
   }
 
-  // Function to open the modal with the full address
-  openAddressModal(address: string) {
-    this.fullAddress = address;
-    $('#addressModal').modal('show'); // Show the modal using jQuery
-  }
 
   // ADDING ROWS IN TABLE
   addRow() {

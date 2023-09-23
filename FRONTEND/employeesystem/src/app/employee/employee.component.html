@@ -42,38 +42,10 @@
                 <td>
                   <div class="truncate-cell">
                     <div class="truncate-content">{{ employee.address }}</div>
-                    <button class="view-more-button" *ngIf="isEllipsis(employee.address)"
-                      (click)="openAddressModal(employee.address)">View More</button>
+                    <button class="view-more-button" *ngIf="isEllipsis(employee.address)">View More</button>
                   </div>
                 </td>
                 <td>
-                  <!-- Add this modal code to your HTML -->
-                  <div class="modal fade" id="addressModal" tabindex="-1" role="dialog"
-                    aria-labelledby="addressModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="addressModalLabel">Full Address</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <p>{{ fullAddress }}</p>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-
-
-
-
-
-
                   <button class="btn btn-info" (click)="editEmployee(employee)"><i class="fas fa-edit"></i></button>
                   &nbsp;
                   <button class="btn btn-danger" (click)="deleteEmp(employee.emp_id)"><i
